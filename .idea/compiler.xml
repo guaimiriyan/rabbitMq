@@ -8,11 +8,18 @@
         <outputRelativeToContentRoot value="true" />
         <module name="rabbitmq-consumer" />
         <module name="rabbitmq-producer" />
+        <module name="rabbitmq-api" />
+        <module name="rabbitmq-producerpro" />
+        <module name="rabbitmq-common" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="rabbitmq-api" target="8" />
+      <module name="rabbitmq-common" target="8" />
       <module name="rabbitmq-consumer" target="1.8" />
+      <module name="rabbitmq-parent" target="8" />
       <module name="rabbitmq-producer" target="1.8" />
+      <module name="rabbitmq-producerpro" target="8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

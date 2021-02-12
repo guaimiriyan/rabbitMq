@@ -6,6 +6,7 @@ import org.springframework.amqp.core.MessagePostProcessor;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageHeaders;
 import org.springframework.messaging.support.MessageBuilder;
@@ -26,6 +27,7 @@ public class sendService {
     /**
      * 	这里就是确认消息的回调监听接口，用于确认消息是否被broker所收到
      */
+
     final RabbitTemplate.ConfirmCallback confirmCallback = new RabbitTemplate.ConfirmCallback() {
         /**
          * 	@param CorrelationData 作为一个唯一的标识
@@ -38,6 +40,15 @@ public class sendService {
         }
     };
 
+
+
+    /**
+     * @title send
+     * @description
+     * @author angus
+     * @params [message, param]
+     * @updateTime 2021/2/13 [message, param] void
+     */
     public void send(Object message, Map<String,Object> param){
         //1、首先进行消息的封装
         MessageHeaders messageHeaders = new MessageHeaders(param);

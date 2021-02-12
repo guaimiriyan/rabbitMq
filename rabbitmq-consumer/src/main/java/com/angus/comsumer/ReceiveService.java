@@ -24,6 +24,7 @@ public class ReceiveService {
      * @param channel
      * @throws Exception
      */
+
     @RabbitListener(bindings = @QueueBinding(
             value = @Queue(value = "queue-1", durable = "true"),
             exchange = @Exchange(name = "exchange-angus",
@@ -36,7 +37,7 @@ public class ReceiveService {
     @RabbitHandler
     public void onMessage(Message message, Channel channel) throws IOException {
         //1、该处为处理业务代码
-        System.out.println(message);
+        System.out.println("处理消息："+message.getPayload());
         //2、由于该处是手动，需要从channl里获取值积极性ask
         Long aLong = message.getHeaders().get(AmqpHeaders.DELIVERY_TAG, Long.class);
 //        true to acknowledge all messages up to and including the supplied delivery tag;

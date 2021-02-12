@@ -3,8 +3,12 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/rabbitMq.iml" filepath="$PROJECT_DIR$/.idea/rabbitMq.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rabbitmq-parent/rabbitmq-api/rabbitmq-api.iml" filepath="$PROJECT_DIR$/rabbitmq-parent/rabbitmq-api/rabbitmq-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rabbitmq-parent/rabbitmq-common/rabbitmq-common.iml" filepath="$PROJECT_DIR$/rabbitmq-parent/rabbitmq-common/rabbitmq-common.iml" />
       <module fileurl="file://$PROJECT_DIR$/rabbitmq-consumer/rabbitmq-consumer.iml" filepath="$PROJECT_DIR$/rabbitmq-consumer/rabbitmq-consumer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rabbitmq-parent/rabbitmq-parent.iml" filepath="$PROJECT_DIR$/rabbitmq-parent/rabbitmq-parent.iml" />
       <module fileurl="file://$PROJECT_DIR$/rabbitmq-producer/rabbitmq-producer.iml" filepath="$PROJECT_DIR$/rabbitmq-producer/rabbitmq-producer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rabbitmq-parent/rabbitmq-producerpro/rabbitmq-producerpro.iml" filepath="$PROJECT_DIR$/rabbitmq-parent/rabbitmq-producerpro/rabbitmq-producerpro.iml" />
     </modules>
   </component>
 </project>
