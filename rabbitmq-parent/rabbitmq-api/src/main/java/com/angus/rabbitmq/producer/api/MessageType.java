@@ -1,4 +1,4 @@
-package com.angus.rabbitmq.api;
+package com.angus.rabbitmq.producer.api;
 
 /**
  * @author admin

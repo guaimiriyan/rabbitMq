@@ -1,6 +1,5 @@
-package com.angus.rabbitmq.api;
+package com.angus.rabbitmq.producer.api;
 
-import java.awt.*;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;

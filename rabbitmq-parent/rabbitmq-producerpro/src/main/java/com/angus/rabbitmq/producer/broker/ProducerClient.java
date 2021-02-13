@@ -1,9 +1,9 @@
-package com.angus.rabbitmq.broker;
+package com.angus.rabbitmq.producer.broker;
 
-import com.angus.rabbitmq.api.Message;
-import com.angus.rabbitmq.api.MessageProducer;
-import com.angus.rabbitmq.api.MessageType;
-import com.angus.rabbitmq.api.SendCallBack;
+import com.angus.rabbitmq.producer.api.Message;
+import com.angus.rabbitmq.producer.api.MessageProducer;
+import com.angus.rabbitmq.producer.api.MessageType;
+import com.angus.rabbitmq.producer.api.SendCallBack;
 
 import java.util.List;
 

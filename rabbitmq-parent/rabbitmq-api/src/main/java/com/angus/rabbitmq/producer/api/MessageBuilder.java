@@ -1,7 +1,6 @@
-package com.angus.rabbitmq.api;
+package com.angus.rabbitmq.producer.api;
 
-import com.angus.rabbitmq.api.exception.MessageRuntimExceptiom;
-import sun.misc.Contended;
+import com.angus.rabbitmq.producer.api.exception.MessageRuntimExceptiom;
 
 import java.util.HashMap;
 import java.util.Map;

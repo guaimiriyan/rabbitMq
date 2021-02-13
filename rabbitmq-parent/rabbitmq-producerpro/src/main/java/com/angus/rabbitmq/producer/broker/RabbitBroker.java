@@ -1,6 +1,6 @@
-package com.angus.rabbitmq.broker;
+package com.angus.rabbitmq.producer.broker;
 
-import com.angus.rabbitmq.api.Message;
+import com.angus.rabbitmq.producer.api.Message;
 
 /**
  * @author admin

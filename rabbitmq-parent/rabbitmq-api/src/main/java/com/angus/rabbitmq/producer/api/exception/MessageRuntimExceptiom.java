@@ -1,4 +1,4 @@
-package com.angus.rabbitmq.api.exception;
+package com.angus.rabbitmq.producer.api.exception;
 
 /**
  * @author admin

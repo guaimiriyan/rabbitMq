@@ -1,4 +1,4 @@
-package com.angus.rabbitmq.broker;
+package com.angus.rabbitmq.producer.broker;
 
 import java.util.concurrent.*;
 

@@ -1,8 +1,8 @@
-package com.angus.rabbitmq.broker;
+package com.angus.rabbitmq.producer.broker;
 
-import com.angus.rabbitmq.api.Message;
-import com.angus.rabbitmq.api.MessageType;
-import com.angus.rabbitmq.api.exception.MessageRuntimExceptiom;
+import com.angus.rabbitmq.producer.api.Message;
+import com.angus.rabbitmq.producer.api.MessageType;
+import com.angus.rabbitmq.producer.api.exception.MessageRuntimExceptiom;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
