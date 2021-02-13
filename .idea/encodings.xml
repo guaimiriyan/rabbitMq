@@ -2,6 +2,12 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/rabbitmq-consumer/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/rabbitmq-parent/rabbitmq-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/rabbitmq-parent/rabbitmq-api/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/rabbitmq-parent/rabbitmq-common/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/rabbitmq-parent/rabbitmq-common/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/rabbitmq-parent/rabbitmq-producerpro/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/rabbitmq-parent/rabbitmq-producerpro/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/rabbitmq-producer/src/main/java" charset="UTF-8" />
   </component>
 </project>
