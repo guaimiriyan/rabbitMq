@@ -1,5 +1,10 @@
 package com.angus.rabbitmq.producer.broker;
 
+import com.angus.rabbitmq.common.convert.RabbitMessageConverter;
+import com.angus.rabbitmq.common.convert.SuperRabbitMessageConverter;
+import com.angus.rabbitmq.common.serializer.Serializer;
+import com.angus.rabbitmq.common.serializer.SerializerFactory;
+import com.angus.rabbitmq.common.serializer.impl.JacksonSerializerFactory;
 import com.angus.rabbitmq.producer.api.Message;
 import com.angus.rabbitmq.producer.api.MessageType;
 import com.angus.rabbitmq.producer.api.exception.MessageRuntimExceptiom;
@@ -47,9 +52,14 @@ public class RabbitTemplateContainer implements RabbitTemplate.ConfirmCallback{
         newRabbitTemplate.setRoutingKey(message.getRoutingKey());
         newRabbitTemplate.setRetryTemplate(new RetryTemplate());
         //3、序列化进行封住装
+        SerializerFactory serializerFactory = JacksonSerializerFactory.SerializerFactory;
+        RabbitMessageConverter rabbitMessageConverter = new RabbitMessageConverter(serializerFactory.create(Message.class));
+        SuperRabbitMessageConverter superRabbitMessageConverter = new SuperRabbitMessageConverter(rabbitMessageConverter);
+        newRabbitTemplate.setMessageConverter(superRabbitMessageConverter);
+
         //4、是否confirm进行封装
         if (!MessageType.QUICK.equals(messageType)){
-
+            newRabbitTemplate.setConfirmCallback(this);
         }
         templateContainer.put(topic,newRabbitTemplate);
         return newRabbitTemplate;
