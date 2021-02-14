@@ -81,5 +81,6 @@
         <module>rabbitmq-common</module>
         <module>rabbitmq-api</module>
         <module>rabbitmq-producerpro</module>
+        <module>rabbitmq-task</module>
     </modules>
 </project>

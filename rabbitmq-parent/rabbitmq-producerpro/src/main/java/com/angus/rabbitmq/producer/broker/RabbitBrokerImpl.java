@@ -29,6 +29,8 @@ public class RabbitBrokerImpl implements RabbitBroker{
 
     @Override
     public void sendConfirm(Message message) {
+        message.setMessageType(MessageType.CONFIRM);
+        sendKernel(message);
 
     }
 
