@@ -3,9 +3,18 @@ package com.angus.rabbitmq.producer.broker;
 
 import com.angus.rabbitmq.producer.api.Message;
 import com.angus.rabbitmq.producer.api.MessageType;
+import com.angus.rabbitmq.producer.constant.BrokerMessageConst;
+import com.angus.rabbitmq.producer.constant.BrokerMessageStatus;
+import com.angus.rabbitmq.producer.entity.BrokerMessage;
+import com.angus.rabbitmq.producer.service.MessageStoreService;
+import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.Date;
+import java.util.List;
 
 /**
  * @author admin
@@ -14,10 +23,14 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @Description TODO
  * @createTime 2021年02月13日 10:37:00
  */
+@Service
 public class RabbitBrokerImpl implements RabbitBroker{
 
     @Autowired
     RabbitTemplateContainer rabbitTemplateContainer;
+
+    @Autowired
+    MessageStoreService messageStoreService;
 
 
     @Override
@@ -36,7 +49,33 @@ public class RabbitBrokerImpl implements RabbitBroker{
 
     @Override
     public void sendRapid(Message message) {
+        //1、首先进行meaassge保存
+        message.setMessageType(MessageType.RELIANT);
+        BrokerMessage bm = messageStoreService.selectByMessageId(message.getMessageId());
+        if(bm == null) {
+            //1. 把数据库的消息发送日志先记录好
+            Date now = new Date();
+            BrokerMessage brokerMessage = new BrokerMessage();
+            brokerMessage.setMessageId(message.getMessageId());
+            brokerMessage.setStatus(BrokerMessageStatus.SENDING.getCode());
+            //tryCount 在最开始发送的时候不需要进行设置
+            brokerMessage.setNextRetry(DateUtils.addMinutes(now, BrokerMessageConst.TIMEOUT));
+            brokerMessage.setCreateTime(now);
+            brokerMessage.setUpdateTime(now);
+            brokerMessage.setMessage(message);
+            messageStoreService.insert(brokerMessage);
+        }
+        //2、调用sendKernel
+        sendKernel(message);
 
+    }
+
+    @Override
+    public void sendBatchMessage() {
+        List<Message> clear = MessageHolder.clear();
+        clear.forEach(message -> {
+            AsynSendKernel(message);
+        });
     }
 
 

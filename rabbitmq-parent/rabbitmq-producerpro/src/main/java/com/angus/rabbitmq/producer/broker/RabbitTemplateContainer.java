@@ -8,6 +8,7 @@ import com.angus.rabbitmq.common.serializer.impl.JacksonSerializerFactory;
 import com.angus.rabbitmq.producer.api.Message;
 import com.angus.rabbitmq.producer.api.MessageType;
 import com.angus.rabbitmq.producer.api.exception.MessageRuntimExceptiom;
+import com.angus.rabbitmq.producer.service.MessageStoreService;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -31,6 +32,9 @@ public class RabbitTemplateContainer implements RabbitTemplate.ConfirmCallback{
 
     @Autowired
     private ConnectionFactory connectionFactory;
+
+    @Autowired
+    private MessageStoreService messageStoreService;
 
     /**
      * 通过topic在缓存一个rabbitTemplate
@@ -74,6 +78,18 @@ public class RabbitTemplateContainer implements RabbitTemplate.ConfirmCallback{
      */
     @Override
     public void confirm(CorrelationData correlationData, boolean ack, String cause) {
-
+        String id = correlationData.getId();
+        String[] split = id.split("#");
+        String messageType = split[2];
+        String messageId = split[0];
+        //只有在confirm或者RELIANT进行confirm
+        //成功的情况下
+        if (ack){
+            if (MessageType.RELIANT.equals(messageType)){
+                messageStoreService.succuess(messageId);
+            }
+        }else {
+            System.out.println("投递失败！");
+        }
     }
 }

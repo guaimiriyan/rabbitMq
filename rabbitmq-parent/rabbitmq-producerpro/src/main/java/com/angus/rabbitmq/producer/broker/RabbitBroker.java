@@ -14,4 +14,5 @@ public interface RabbitBroker {
     void sendQuick(Message message);
     void sendConfirm(Message message);
     void sendRapid(Message message);
+    void sendBatchMessage();
 }

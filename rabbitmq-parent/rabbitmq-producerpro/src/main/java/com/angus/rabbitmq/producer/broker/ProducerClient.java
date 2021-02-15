@@ -4,6 +4,8 @@ import com.angus.rabbitmq.producer.api.Message;
 import com.angus.rabbitmq.producer.api.MessageProducer;
 import com.angus.rabbitmq.producer.api.MessageType;
 import com.angus.rabbitmq.producer.api.SendCallBack;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -14,8 +16,11 @@ import java.util.List;
  * @Description TODO
  * @createTime 2021年02月13日 10:22:00
  */
+@Component
 public class ProducerClient implements MessageProducer {
 
+    @Autowired
+    RabbitBroker rabbitBroker;
     /**
      * @title send
      * @description 快速推送可分为三类
@@ -29,9 +34,11 @@ public class ProducerClient implements MessageProducer {
         String messageType = message.getMessageType();
         switch (messageType){
             case MessageType.QUICK:
-
+                rabbitBroker.sendQuick(message);
             case MessageType.CONFIRM:
+                rabbitBroker.sendConfirm(message);
             case MessageType.RELIANT:
+                rabbitBroker.sendRapid(message);
         }
     }
 
@@ -42,6 +49,10 @@ public class ProducerClient implements MessageProducer {
 
     @Override
     public void send(List<Message> messageList) {
-
+        messageList.forEach( message -> {
+            message.setMessageType(MessageType.QUICK);
+            MessageHolder.addMessage(message);
+        });
+        rabbitBroker.sendBatchMessage();
     }
 }
